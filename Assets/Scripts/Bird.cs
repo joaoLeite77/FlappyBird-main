@@ -8,13 +8,11 @@ public class Bird : MonoBehaviour
     public float jumpForce;
     public BirdStatus status = BirdStatus.Start;
 
-    // Start is called before the first frame update
     void Start()
     {
         rig.bodyType = RigidbodyType2D.Static;
     }
 
-    // Update is called once per frame
     void Update()
     {
         switch (status)
