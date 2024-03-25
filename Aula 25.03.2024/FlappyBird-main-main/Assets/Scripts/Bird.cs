@@ -28,23 +28,24 @@ public class Bird : MonoBehaviour
         }
     }
 
+    public void StartGame()
+    {
+        rig.bodyType = RigidbodyType2D.Dynamic;
+        Jump();
+    }
     void StartUpdate()
     {
         if (Input.GetMouseButtonDown(0))
         {
              // GameManager.instance.status = GameStatus.Play;
              GameManager.instance.StartGame();
-            rig.bodyType = RigidbodyType2D.Dynamic;
-            Jump();
+            
         }
     }
 
     void PlayUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Jump();
-        }
+        
     }
 
     void GameOverUpdate()
