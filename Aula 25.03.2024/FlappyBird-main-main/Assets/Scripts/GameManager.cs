@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameStatus status = GameStatus.Start;
 
     public Bird bird;
+    public PipesManager pipesManager;
 
     private void Awake()
     {
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
             case GameStatus.Play:
                 break; 
             case GameStatus.GameOver:
+                GameOverUpdate();
                 break;
 
         }
@@ -63,4 +65,19 @@ public class GameManager : MonoBehaviour
         status = GameStatus.GameOver;
 
     }
+   void GameOverUpdate()
+   {
+        if (Input.GetMouseButtonDown(0)) 
+        {
+            Restart();
+        }
+   }
+
+   void Restart()
+    {
+        status = GameStatus.Start;
+        bird.Restart();
+        pipesManager.Restart();
+    }
 }
+

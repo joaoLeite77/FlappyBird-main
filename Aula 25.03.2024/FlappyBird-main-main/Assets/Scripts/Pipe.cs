@@ -12,14 +12,26 @@ public class Pipe : MonoBehaviour
 
     void Update()
     {
-        transform.position += Vector3.left * Time.deltaTime * speed;
-
+        switch (GameManager.instance.status)
+        {
+            case GameStatus.Start:
+                break;
+            case GameStatus.Play:
+                PlayUpdate();
+                break;
+            case GameStatus.GameOver:
+                break;
+        }
+    }
+    void PlayUpdate()
+    { 
+       transform.position += Vector3.left * Time.deltaTime * speed;
         if (transform.position.x < -2)
         {
             // autodestruir
             Destroy(gameObject);
-
         }
-
     }
 }
+
+

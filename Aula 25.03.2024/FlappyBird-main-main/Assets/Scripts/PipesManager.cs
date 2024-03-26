@@ -13,10 +13,26 @@ public class PipesManager : MonoBehaviour
 
     void Start()
     {
-        
+        currentTime = interval;
     }
 
     void Update()
+    {
+        switch (GameManager.instance.status)
+        {
+            case GameStatus.Start:
+                
+                break;
+            case GameStatus.Play:
+                PlayUpdate();
+                break;
+            case GameStatus.GameOver:
+                
+                break;
+        }
+    }
+    
+    void PlayUpdate()
     {
         currentTime += Time.deltaTime;
         if (currentTime > interval)
@@ -25,12 +41,11 @@ public class PipesManager : MonoBehaviour
             currentTime = 0f;
 
         }
-
     }
 
     void CreatePipe()
     {
-        var pipeGameObject = Instantiate(pipeModel);
+        var pipeGameObject = Instantiate(pipeModel, transform);
         var pipeTransform = pipeGameObject.GetComponent<Transform>();
 
         float y = Random.Range(-1.6f , 0.26f);
@@ -39,5 +54,15 @@ public class PipesManager : MonoBehaviour
 
 
 
+    }
+
+    public void Restart()
+    {
+        currentTime = interval;
+
+        while (transform.childCount > 0)
+        {
+            DestroyImmediate(transform.GetChild(0).gameObject);
+        }
     }
 }
